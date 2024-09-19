@@ -8,6 +8,12 @@ Programma izveidota: 18.09.2024.
 #include <iostream>
 #include <vector>
 
+/**
+ * std::vector<int> extractDigits(long long m)
+ * @brief Sadala skaitlu ciparos un atgriež masivu ar tiem
+ * @param m Skaitlis kuru jasadala ciparos
+ * @return Dinamisks masivs ar cipariem
+*/
 std::vector<int> extractDigits(long long m)
 {
     std::vector<int> digits;
@@ -27,14 +33,15 @@ int main()
     int ok = 0;
     do
     {
-
+        
+        // Skaitla ievade no lietotaja
         long long m, n;
         std::cout << "Ievadiet skaitli m: ";
         std::cin >> m;
         std::cout << "Ievadiet skaitli n: ";
         std::cin >> n;
 
-        // Parbaude vai ieavditi skaitli (n un m) ir naturali
+        // Parbaude vai  skaitli (n un m) ir naturali
         if (n <= 0 || m <= 0)
         {
             std::cout << "Ievadits skaitlis nav naturals" << std::endl;
@@ -71,14 +78,15 @@ int main()
 }
 
 /**************Testa plāns************
-m      n       Rezultāts
-785938 3       Pirmo 3 ciparu summa skaitlim 785938 ir 20
-123    2       Pirmo 2 ciparu summa skaitlim 123 ir 3
-123    3       Pirmo 3 ciparu summa skaitlim 123 ir 6
-123    4       Skaitlim 123 nav 4 ciparu
-123    0       Ievadits skaitlis nav naturals
-0      0       Ievadits skaitlis nav naturals
-0      1       Ievadits skaitlis nav naturals
--123   3       Ievadits skaitlis nav naturals
-123    -3      Ievadits skaitlis nav naturals
+m           n       Rezultāts
+785938      3       20
+123         2       3
+123         3       6
+9999999     5       45
+123         4       Skaitlim 123 nav 4 ciparu
+123         0       Ievadits skaitlis nav naturals
+0           0       Ievadits skaitlis nav naturals
+0           1       Ievadits skaitlis nav naturals
+-123        3       Ievadits skaitlis nav naturals
+123         -3      Ievadits skaitlis nav naturals
 *******************************************/
