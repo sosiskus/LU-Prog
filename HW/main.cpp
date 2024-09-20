@@ -75,6 +75,8 @@ int main()
                   << "Vai turpinat (1) vai beigt (0)? ";
         std::cin >> ok;
     } while (ok == 1);
+
+    return 0;
 }
 
 /**************Testa plāns************
