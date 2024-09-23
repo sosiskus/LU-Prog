@@ -16,7 +16,8 @@ def extract_digits(m):
         digits.append(m % 10)  # izvlikam pedejo ciparu un pievienojam beigas pie masiva
         m //= 10               # dalam skaitli ar 10 un noapalojam uz apaksu, lai dabutu nakošo ciparu
 
-    digits.reverse()           # apgriežam masīvu, lai cipari būtu pareizā secībā
+    for i in range(len(digits) // 2): # apgriežam masīvu, lai cipari būtu pareizā secībā
+        digits[i], digits[len(digits) - i - 1] = digits[len(digits) - i - 1], digits[i]
     return digits
 
 ok = 1
@@ -37,7 +38,10 @@ while ok != 0:
             print(f"Skaitlim {m} nav {n} ciparu")
         else:
             # saskaitam pirmos n ciparus
-            result_sum = sum(digitsArray[:n])
+            result_sum = 0
+            for i in range(n):
+                result_sum += digitsArray[i]
+
             print(f"Pirmo {n} ciparu summa skaitlim {m} ir {result_sum}")
 
 

@@ -24,7 +24,13 @@ std::vector<int> extractDigits(long long m)
         m /= 10;                  // dalam skaitli ar 10, lai dabutu nakošo ciparu
     }
 
-    std::reverse(digits.begin(), digits.end()); // apgriežam masīvu, lai cipari būtu pareizā secībā
+    for (int i = 0; i < digits.size() / 2; i++) // apgriežam masīvu, lai cipari būtu pareizā secībā
+    {
+        long long temp = digits[i];
+        digits[i] = digits[digits.size() - i - 1];
+        digits[digits.size() - i - 1] = temp;
+    }
+
     return digits;
 }
 
@@ -50,7 +56,7 @@ int main()
         {
 
             // Izvlikt visus ciparus no skaitla un ierakstit massiva digitsArray
-            auto digitsArray = extractDigits(m);
+            std::vector<int> digitsArray = extractDigits(m);
 
             // Parbaude vai skaitlim m ir n cipari
             if (digitsArray.size() < n)
