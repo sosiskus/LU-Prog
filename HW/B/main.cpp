@@ -70,7 +70,6 @@ int main()
     int ok = 0;
     do
     {
-
         // Skaitla ievade no lietotaja
         int n;
         std::cout << "Ievadiet skaitli n: ";
