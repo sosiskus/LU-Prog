@@ -6,9 +6,6 @@ Programma izveidota: 04.10.2024.
 
 #include <iostream>
 #include <cmath>
-#include <vector>
-#include <functional>
-
 /**
  * bool isPrime(int n)
  * @brief Pārbauda vai skaitlis ir pirmskaitlis
@@ -36,15 +33,15 @@ bool isPrime(int n)
 }
 
 /**
- * std::vector<int> findPrimes(int n)
+ * int findPrimes(int* arr, int n)
  * @brief Atrod pirmskaitļus, kuri mazāki par n un kuriem izteikts ir 2^k -1
- * @param n Skaitlis, līdz kuram meklē pirmskaitļus
- * @return Pirmskaitļi, kuri mazāki par n un kuriem izteikts ir 2^k -1
+ * @param arr Masīvs, kurā tiks saglabāti pirmskaitļi
+ * @param n Skaitlis, līdz kuram tiks meklēti pirmskaitļi
+ * @return Atrasto pirmskaitļu skaits
  */
-std::vector<int> findPrimes(int n)
-{
-    std::vector<int> primes;
-
+int findPrimes(int* arr, int n)
+{   
+    int idx = 0;
     // Pārbauda katru naturalo skaitli no 1 līdz n
     for (int i = 1; i < n; i++)
     {
@@ -55,13 +52,13 @@ std::vector<int> findPrimes(int n)
             {
                 if (std::pow(2, k) - 1 == i)
                 {
-                    primes.push_back(i); // Ja skaitlis ir 2^k -1, tad pievieno to pie pirmskaitļu masīva
+                    arr[idx++] = i;
                 }
             }
         }
     }
 
-    return primes;
+    return idx;
 }
 
 
@@ -82,16 +79,18 @@ int main()
             continue;
         }
 
+        int primes[n] = {0};
+
         // Atrast pirmskaitļus, kuri mazāki par n un kurus var izteikt formā 2^k -1
-        std::vector<int> primes = findPrimes(n);
-        if (primes.size() == 0) // Ja massivs ir tukss tad nav tadu pirmskaitļu kuri izteikti ir 2^k -1
+        int count = findPrimes(primes, n);
+        if (count == 0) // Ja massivs ir tukss tad nav tadu pirmskaitļu kuri izteikti ir 2^k -1
         {
             std::cout << "Nav pirmskaitlu, kuri mazaki par " << n << " un kuri var izteikt forma 2^k -1" << std::endl;
         }
         else
         {
             std::cout << "Pirmskaitli, kuri mazaki par " << n << " un kuri var izteikt forma 2^k -1: ";
-            for (int i = 0; i < primes.size(); i++) // Izvada visus pirmskaitļus, kuri izteikti ir 2^k -1
+            for (int i = 0; i < count; i++) // Izvada visus pirmskaitļus, kuri izteikti ir 2^k -1
             {
                 std::cout << primes[i] << " ";
             }
