@@ -7,10 +7,9 @@ Programma izveidota: 04.10.2024.
 #include <iostream>
 #include <cmath>
 /**
- * bool isPrime(int n)
- * @brief Pārbauda vai skaitlis ir pirmskaitlis
- * @param n Skaitlis, kuru jāpārbauda
- * @return Vai skaitlis ir pirmskaitlis
+ * bool isPrime(int n);
+ * Funkcija isPrime(n) - 
+ * Atgriež true, ja naturalais skaitlis n ir pirmskaitlis, citādi false
  */
 bool isPrime(int n)
 {
@@ -20,7 +19,7 @@ bool isPrime(int n)
         return false;
     }
 
-    // Pārbauda vai skaitlis dalās ar kādu citu skaitli, kas nav 1 un n 
+    // Pārbauda, vai skaitlis dalās ar kādu citu skaitli, kas nav 1 un n 
     for (int i = 2; i < n; i++)
     {
         if (n % i == 0) // Ja skaitlis dalās ar kādu citu skaitli, tad tas nav pirmskaitlis
@@ -34,10 +33,9 @@ bool isPrime(int n)
 
 /**
  * int findPrimes(int* arr, int n)
- * @brief Atrod pirmskaitļus, kuri mazāki par n un kuriem izteikts ir 2^k -1
- * @param arr Masīvs, kurā tiks saglabāti pirmskaitļi
- * @param n Skaitlis, līdz kuram tiks meklēti pirmskaitļi
- * @return Atrasto pirmskaitļu skaits
+ * Funkcija findPrimes(arr, n) -
+ * Atrast pirmskaitļus un ierakstit massiva arr, kuri mazāki par naturalo skaili n un kurus var izteikt formā 2^k -1
+ * Atgriež pirmskaitļu skaitu, kuri izteikti formā 2^k -1
  */
 int findPrimes(int* arr, int n)
 {   
@@ -114,6 +112,7 @@ n       Rezultāts
 33      3, 7, 31
 89      3, 7, 31
 4999	3, 7, 31, 127
+2       Nav pirmskaitļu, kuri mazāki par 2 un kuri var izteikt forma 2^k -1
 0       Nav naturāls skaitlis
 -5      Nav naturāls skaitlis
 *******************************************/

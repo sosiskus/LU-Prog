@@ -6,7 +6,7 @@ Programma izveidota: 04.10.2024.
 
 def is_prime(n):
     """
-    def is_prime(n):
+    Funkcija is_prime(n):
     Pārbauda vai skaitlis ir pirmskaitlis
     Atgriez vai skaitlis ir pirmskaitlis
     """
@@ -15,7 +15,7 @@ def is_prime(n):
     if n <= 1:
         return False
     
-    # Pārbauda vai skaitlis dalās ar kādu citu skaitli, kas nav 1 un n 
+    # Pārbauda, vai skaitlis dalās ar kādu citu skaitli, kas nav 1 un n 
     for i in range(2, n):
         if n % i == 0: # Ja skaitlis dalās ar kādu citu skaitli, tad tas nav pirmskaitlis
             return False
@@ -35,7 +35,7 @@ def find_primes(n):
         if is_prime(i):
             # Iziet cauri visiem skaitļiem no 1 līdz i un pārbauda vai kāds no tiem ir 2^k -1
             for k in range(1, i):
-                if pow(2, k) - 1 == i:
+                if (2 ** k) - 1 == i:
                     primes.append(i) # Ja skaitlis ir 2^k -1, tad pievieno to pie pirmskaitļu masīva
     
     return primes
@@ -55,9 +55,9 @@ while ok == 1:
     
     # Ja massivs ir tukss tad nav tadu pirmskaitļu kuri izteikti ir 2^k -1
     if len(primes) == 0:
-        print(f"No primes less than {n} can be expressed as 2^k - 1.")
+        print(f"Nav pirmskaitlu, kuri mazaki par {n} un kuri var izteikt forma 2^k -1.")
     else:
-        print(f"Primes less than {n} that can be expressed as 2^k - 1: ")
+        print(f"Pirmskaitli, kuri mazaki par {n} un kuri var izteikt forma 2^k -1:")
         for prime in primes: # Izvada visus pirmskaitļus, kuri izteikti ir 2^k -1
             print(prime)
     
@@ -72,6 +72,7 @@ n       Rezultāts
 33      3, 7, 31
 89      3, 7, 31
 4999	3, 7, 31, 127
+2       Nav pirmskaitlu, kuri mazaki par 2 un kuri var izteikt forma 2^k -1.
 0       Nav naturāls skaitlis
 -5      Nav naturāls skaitlis
 """
