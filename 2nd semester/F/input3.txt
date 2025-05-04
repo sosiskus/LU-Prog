@@ -1,0 +1,29 @@
+#include <iostream>
+void main()
+{
+    int k = 0; // Initialize variable
+
+    int sum = 0; // Initialize sum
+    for (int i = 0; i < 10; i++)
+    {
+        sum += i; // Add i to sum
+    }
+    std::cout << sum << std::endl; // Print sum
+
+    int c67 = 0; /* Initialize c */
+
+    int a = 0; // Initialize a
+
+    int b = 0; // Initialize b
+    /*for (int i = 0; i < 10; i++)
+    {
+        b += i; // Add i to b
+    }*/
+
+
+    /*test              */
+
+    int test = /* TEST */ 1212;
+
+    int c = 0; /* Initialize c */
+}

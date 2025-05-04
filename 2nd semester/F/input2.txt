@@ -1,0 +1,116 @@
+/*******************************************
+Niktia Klepikovs, nk24033
+F20. Dots teksta fails, kurā atrodas sintaktiski pareizs C++ programmas teksts. 
+Sastādīt programmu, kura failā izvada šo programmas tekstu bez komentāriem. 
+Drīkst pieņemt, ka teksta literāļos neparādīsies komentāru sākuma vai beigu apzīmējuma simboli.
+Programma izveidota: 13.02.2025.
+*******************************************/
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <map>
+#include <cstdint>
+
+/**
+ * void removeInlineComments(std::string& line)
+ * Funkcija removeInlineComments(line) -
+ * Mekle rindina komentara sakuma simbolu (//) un izgriez tos no rindinas.
+ * Neko neatgriez, jo funkcija maina rindinas saturu.
+ */
+void removeInlineComments(std::string& line)
+{
+    for (int i = 0; i < line.size(); i++)
+    {
+        if (line[i] == '/' && line[i + 1] == '/')
+        {
+            line = line.substr(0, i);
+            break;
+        }
+    }
+}
+
+/**
+ * int findMultilineComments(std::string& line)
+ * Funkcija findMultilineComments(line) -
+ * Mekle rindina komentara sakuma simbolu (/*) un komentara beigu simbolu (* /) un izgriez tos no rindinas.
+ * Atgriez 0, ja nav atrasts komentara sakuma vai beigu simbols.
+ * Atgriez 1, ja atrasts komentara sakuma simbols.
+ * Atgriez 2, ja atrasts komentara beigu simbols.
+ */
+int findMultilineComments(std::string& line)
+{
+    int inComment = 0;
+    for (int i = 0; i < line.size(); i++)
+    {
+        if (line[i] == '/' && line[i + 1] == '*') // Komentara sakums
+        {
+            inComment = 1;
+            // remove comment start
+            line = line.substr(0, i);
+            break;
+        }
+        else if (line[i] == '*' && line[i + 1] == '/') // Komentara beigas
+        {
+            inComment = 2;
+            // remove comment end
+            line = line.substr(i + 2);
+            break;
+        }
+    }
+    return inComment;
+}
+
+/**
+ * void writeToFile(std::fstream& output, std::string& line)
+ * Funkcija writeToFile(output, line) -
+ * Raksta rindinu line faila output.
+ * Neko neatgriez.
+ */
+void writeToFile(std::fstream& output, std::string& line)
+{
+    output << line << std::endl;
+}
+
+int main()
+{
+    std::fstream input;
+    std::fstream output;
+    std::string line;
+
+    input.open("input.txt", std::ios::in);
+    if (!input)
+    {
+        std::cout << "Input file not found!" << std::endl;
+        return 1;
+    }
+
+    output.open("output.txt", std::ios::out);
+    if (!output)
+    {
+        std::cout << "Output file not found!" << std::endl;
+        return 1;
+    }
+
+    int multilineComment = 0;
+    while (std::getline(input, line))
+    {
+        removeInlineComments(line); // Remove inline comments
+        auto m = findMultilineComments(line); // Find multiline comments
+        if (m == 1) // Multiline comment started
+        {
+            multilineComment = 1;
+            writeToFile(output, line); // Write line without comment start
+            continue;
+        }
+        else if (m == 2) // Multiline comment ended
+        {
+            multilineComment = 0;
+            writeToFile(output, line); // Write line without comment end
+            continue;
+        }
+
+        if (multilineComment != 1) // If not inside multiline comment, write line
+            writeToFile(output, line);
+   
+    }
+}
