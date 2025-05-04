@@ -1,0 +1,3 @@
+..Vārds1...   Vārds2.!
+(Vārds3) -Vārds4-
+Vārds5
