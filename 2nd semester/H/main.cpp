@@ -17,7 +17,7 @@ Programma izveidota: 04.05.2025.
 /**
  * size_t utf8Length(const std::string& str)
  * Funkcija utf8Length(str)
- * Saskaita UTF-8 kodētus simbolus std::string virknē
+ * Saskaita UTF-8 kodētus simbolus std::string virknē str.
  * Pieņem, ka ievades virkne ir derīgā UTF-8 formātā
  * Atgriež simbolu (nevis baitu) skaitu
  */
@@ -68,7 +68,7 @@ int main()
     std::ifstream inputFile(inputFileName);
     if (!inputFile.is_open())
     {
-        std::cerr << "Nevar atvērt ievades failu '" << inputFileName << "'" << std::endl;
+        std::cerr << "Nevar atvert ievades failu '" << inputFileName << "'" << std::endl;
         return 1;
     }
 
@@ -97,7 +97,7 @@ int main()
                 wordLengthCounts[length]++;
 
                 // Pirnt
-                std::cout << "Vārds: " << currentWord << ", garums: " << length << std::endl;
+                // std::cout << "Vards: " << currentWord << ", garums: " << length << std::endl;
 
                 currentWord.clear();
             }
@@ -113,7 +113,7 @@ int main()
     {
         int length = utf8Length(currentWord);
         wordLengthCounts[length]++;
-        std::cout << "Vārds: " << currentWord << ", garums: " << length << std::endl;
+        std::cout << "Vards: " << currentWord << ", garums: " << length << std::endl;
     }
 
     inputFile.close();
@@ -122,10 +122,10 @@ int main()
     std::ofstream outputFile(outputFileName);
     if (!outputFile.is_open())
     {
-        std::cerr << "Nevar atvērt izvades failu '" << outputFileName << "'" << std::endl;
+        std::cerr << "Nevar atvert izvades failu '" << outputFileName << "'" << std::endl;
         return 1;
     }
-    std::cout << "Vārdu garumu skaits:" << std::endl;
+    std::cout << "Vardu garumu skaits:" << std::endl;
 
     // Izvades failā ieraksta vārdnīcas saturu
     for (const auto &pair : wordLengthCounts)
